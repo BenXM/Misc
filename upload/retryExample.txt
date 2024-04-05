@@ -1,0 +1,75 @@
+Retry logic
+benjunkstuf@gmail.com
+​
+Mondschein, Bernie (NYA)
+​
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+public class RetryExample {
+
+    // Method with retry logic using recursion
+    public void retryOperation(int maxRetries, int currentAttempt) {
+        try {
+            // Perform the operation here
+            System.out.println("Attempting operation...");
+            // Simulating a failure scenario
+            if (Math.random() < 0.5) {
+                throw new RuntimeException("Operation failed");
+            }
+            // If successful, print success message
+            System.out.println("Operation successful!");
+        } catch (RuntimeException e) {
+            // If an exception occurs, retry or throw if max retries exceeded
+            if (currentAttempt < maxRetries) {
+                System.out.println("Operation failed, retrying...");
+                retryOperation(maxRetries, currentAttempt + 1);
+            } else {
+                System.out.println("Max retries exceeded, giving up.");
+                // You can choose to throw the exception here instead of giving up
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        RetryExample retryExample = new RetryExample();
+        // Attempt the operation with maximum of 3 retries
+        retryExample.retryOperation(3, 1);
+    }
+}
+
+
+
+
+
+Sure, here's an example of retry logic using recursion in Java:public class RetryExample {
+
+    // Method with retry logic using recursion
+    public void retryOperation(int maxRetries, int currentAttempt) {
+        try {
+            // Perform the operation here
+            System.out.println("Attempting operation...");
+            // Simulating a failure scenario
+            if (Math.random() < 0.5) {
+                throw new RuntimeException("Operation failed");
+            }
+            // If successful, print success message
+            System.out.println("Operation successful!");
+        } catch (RuntimeException e) {
+            // If an exception occurs, retry or throw if max retries exceeded
+            if (currentAttempt < maxRetries) {
+                System.out.println("Operation failed, retrying...");
+                retryOperation(maxRetries, currentAttempt + 1);
+            } else {
+                System.out.println("Max retries exceeded, giving up.");
+                // You can choose to throw the exception here instead of giving up
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        RetryExample retryExample = new RetryExample();
+        // Attempt the operation with maximum of 3 retries
+        retryExample.retryOperation(3, 1);
+    }
+}
+In this example:retryOperation method attempts an operation and catches any RuntimeException that may occur.If the operation fails and the number of attempts is less than the maximum allowed retries, it recursively calls itself with an incremented attempt count.If the maximum number of retries is exceeded, it either gives up or throws the exception, depending on your requirements.
